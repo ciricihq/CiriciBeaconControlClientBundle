@@ -23,7 +23,7 @@ class ApplicationManager
      * getApplications
      *
      * @access public
-     * @return string (json)
+     * @return stdObject
      */
     public function getApplications()
     {
@@ -38,10 +38,31 @@ class ApplicationManager
     }
 
     /**
+     * postApplication
+     *
+     * @access public
+     * @return stdObject
+     */
+    public function postApplication($name)
+    {
+        $accessToken = $this->getAccessToken();
+
+        $result = $this->client->post('applications.json', [
+            'form_params' => [
+                'application[name]' => $name
+            ],
+            'headers' => [
+                'Authorization' => 'Bearer ' . $accessToken->access_token
+            ]
+        ]);
+        return json_decode((string) $result->getBody());
+    }
+
+    /**
      * getAccessToken
      *
      * @access public
-     * @return string
+     * @return stdObject
      */
     public function getAccessToken()
     {
