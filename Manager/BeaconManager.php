@@ -2,7 +2,7 @@
 
 namespace Cirici\BeaconControlClientBundle\Manager;
 
-class ApplicationManager
+class BeaconManager
 {
     private $client;
 
@@ -20,11 +20,11 @@ class ApplicationManager
      * @access public
      * @return stdObject
      */
-    public function getApplications()
+    public function getBeacons()
     {
         $accessToken = $this->authManager->getAccessToken();
 
-        $result = $this->client->get('applications.json', [
+        $result = $this->client->get('beacons.json', [
             'headers' => [
                 'Authorization' => 'Bearer ' . $accessToken->access_token
             ]
@@ -38,9 +38,9 @@ class ApplicationManager
      * @access public
      * @return stdObject
      */
-    public function postApplication($name)
+    public function postBeacon($name)
     {
-        $accessToken = $this->authManager->getAccessToken();
+        $accessToken = $this->getAccessToken();
 
         $result = $this->client->post('applications.json', [
             'form_params' => [
