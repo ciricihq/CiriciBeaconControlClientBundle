@@ -15,7 +15,7 @@ class BeaconManager
     }
 
     /**
-     * getApplications
+     * getBeacons
      *
      * @access public
      * @return stdObject
@@ -25,27 +25,6 @@ class BeaconManager
         $accessToken = $this->authManager->getAccessToken();
 
         $result = $this->client->get('beacons.json', [
-            'headers' => [
-                'Authorization' => 'Bearer ' . $accessToken->access_token
-            ]
-        ]);
-        return json_decode((string) $result->getBody());
-    }
-
-    /**
-     * postApplication
-     *
-     * @access public
-     * @return stdObject
-     */
-    public function postBeacon($name)
-    {
-        $accessToken = $this->getAccessToken();
-
-        $result = $this->client->post('applications.json', [
-            'form_params' => [
-                'application[name]' => $name
-            ],
             'headers' => [
                 'Authorization' => 'Bearer ' . $accessToken->access_token
             ]
