@@ -6,9 +6,11 @@ services:
     cirici_beacon_control_client.application_manager:
         class: Cirici\BeaconControlClientBundle\Manager\ApplicationManager
         arguments: ["@guzzle.client.beacon_contol_s2s", "@cirici_beacon_control_client.authentication_manager"]
+
     cirici_beacon_control_client.beacon_manager:
         class: Cirici\BeaconControlClientBundle\Manager\BeaconManager
         arguments: ["@guzzle.client.beacon_contol_s2s", "@cirici_beacon_control_client.authentication_manager"]
+
     cirici_beacon_control_client.activity_manager:
         class: Cirici\BeaconControlClientBundle\Manager\ActivityManager
         arguments: ["@guzzle.client.beacon_contol_s2s", "@cirici_beacon_control_client.authentication_manager"]
