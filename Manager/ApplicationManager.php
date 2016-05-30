@@ -33,6 +33,25 @@ class ApplicationManager
     }
 
     /**
+     * getApplicationById
+     *
+     * @param mixed $id
+     * @access public
+     * @return stdObject
+     */
+    public function getApplicationById($id)
+    {
+        $accessToken = $this->authManager->getAccessToken();
+
+        $result = $this->client->get('applications/' . $id . '.json', [
+            'headers' => [
+                'Authorization' => 'Bearer ' . $accessToken->access_token
+            ]
+        ]);
+        return json_decode((string) $result->getBody());
+    }
+
+    /**
      * postApplication
      *
      * @access public
