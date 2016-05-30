@@ -33,6 +33,33 @@ class ApplicationManager
     }
 
     /**
+     * purgueAll
+     *
+     * @access public
+     * @return void
+     */
+    public function purgueAll()
+    {
+        $applications = $this->getApplications();
+
+        foreach ($applications->applications as $app) {
+            $this->deleteApplication($app->id);
+        }
+    }
+
+    public function deleteApplication($id)
+    {
+        $accessToken = $this->authManager->getAccessToken();
+
+        $result = $this->client->delete('applications/' . $id . '.json', [
+            'headers' => [
+                'Authorization' => 'Bearer ' . $accessToken->access_token
+            ]
+        ]);
+        return json_decode((string) $result->getBody());
+    }
+
+    /**
      * getApplicationById
      *
      * @param mixed $id
