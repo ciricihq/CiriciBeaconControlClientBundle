@@ -29,7 +29,8 @@ class ApplicationManager
                 'Authorization' => 'Bearer ' . $accessToken->access_token
             ]
         ]);
-        return json_decode((string) $result->getBody());
+        $collection = json_decode((string) $result->getBody());
+        return $collection->applications;
     }
 
     /**
@@ -47,6 +48,13 @@ class ApplicationManager
         }
     }
 
+    /**
+     * deleteApplication
+     *
+     * @param mixed $id
+     * @access public
+     * @return void
+     */
     public function deleteApplication($id)
     {
         $accessToken = $this->authManager->getAccessToken();
@@ -68,14 +76,14 @@ class ApplicationManager
      */
     public function getApplicationById($id)
     {
-        $accessToken = $this->authManager->getAccessToken();
+        $applications = $this->getApplications();
+        foreach ($applications as $app) {
+            if ($app->id === $id) {
+                return $app;
+            }
+        }
 
-        $result = $this->client->get('applications/' . $id . '.json', [
-            'headers' => [
-                'Authorization' => 'Bearer ' . $accessToken->access_token
-            ]
-        ]);
-        return json_decode((string) $result->getBody());
+        return;
     }
 
     /**

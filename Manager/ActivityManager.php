@@ -29,6 +29,7 @@ class ActivityManager
                 'Authorization' => 'Bearer ' . $accessToken->access_token
             ]
         ]);
-        return json_decode((string) $result->getBody());
+        $resultArr = json_decode((string) $result->getBody());
+        return $resultArr->activities;
     }
 }
