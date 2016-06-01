@@ -17,6 +17,7 @@ Add it to `AppKernel.php`:
 ```php
         $bundles = [
             ...
+            new EightPoints\Bundle\GuzzleBundle\GuzzleBundle(),
             new Cirici\BeaconControlClientBundle\CiriciBeaconControlClientBundle(),
             ...
         ]
