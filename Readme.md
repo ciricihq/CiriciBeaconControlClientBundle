@@ -31,4 +31,16 @@ guzzle:
             base_url: "%beacon_control_s2s_api_base_url%"
 ```
 
+## Configuration
+
+Add the next parameters to `parameters.yml`:
+
+```yml
+    beacon_control_s2s_api_id: <your beacon-control oauth api id>
+    beacon_control_s2s_api_secret: <your beacon-control oauth api secret>
+    beacon_control_s2s_admin_email: <your beacon-control admin email>
+    beacon_control_s2s_admin_password: <your beacon-control admin password>
+    beacon_control_s2s_api_base_url: <your beacon-control api base-url>
+```
+
 Enjoy!
