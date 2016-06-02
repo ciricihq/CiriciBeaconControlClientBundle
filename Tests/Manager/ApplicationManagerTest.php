@@ -1,10 +1,8 @@
 <?php
 
-namespace Cirici\JWTClientBundle\Tests\Controller;
+namespace Cirici\JWTClientBundle\Tests\Manager;
 
-use Liip\FunctionalTestBundle\Test\WebTestCase;
-
-class ApplicationManagerTest extends WebTestCase
+class ApplicationManagerTest extends BaseTestCase
 {
     public function testGetApplications()
     {

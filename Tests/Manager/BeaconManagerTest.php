@@ -1,10 +1,8 @@
 <?php
 
-namespace Cirici\JWTClientBundle\Tests\Controller;
+namespace Cirici\JWTClientBundle\Tests\Manager;
 
-use Liip\FunctionalTestBundle\Test\WebTestCase;
-
-class BeaconManagerTest extends WebTestCase
+class BeaconManagerTest extends BaseTestCase
 {
     public function testGetBeacons()
     {
