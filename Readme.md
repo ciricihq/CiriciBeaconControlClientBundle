@@ -1,4 +1,4 @@
-# CiriciBeaconControlClientBundle
+# CiriciBeaconControlClientBundle [![Build Status](https://travis-ci.org/ciricihq/CiriciBeaconControlClientBundle.svg?branch=master)](https://travis-ci.org/ciricihq/CiriciBeaconControlClientBundle)
 
 This bundle connects to BeaconControl api's to perform various actions
 
