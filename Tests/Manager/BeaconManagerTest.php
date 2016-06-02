@@ -2,6 +2,8 @@
 
 namespace Cirici\JWTClientBundle\Tests\Manager;
 
+use Cirici\JWTClientBundle\Tests\BaseTestCase;
+
 class BeaconManagerTest extends BaseTestCase
 {
     public function testGetBeacons()

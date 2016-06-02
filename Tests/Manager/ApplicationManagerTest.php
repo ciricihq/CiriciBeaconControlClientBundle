@@ -2,6 +2,8 @@
 
 namespace Cirici\JWTClientBundle\Tests\Manager;
 
+use Cirici\JWTClientBundle\Tests\BaseTestCase;
+
 class ApplicationManagerTest extends BaseTestCase
 {
     public function testGetApplications()

@@ -1,6 +1,6 @@
 <?php
 
-namespace Cirici\JWTClientBundle\Tests\Manager;
+namespace Cirici\JWTClientBundle\Tests;
 
 use Liip\FunctionalTestBundle\Test\WebTestCase;
 
