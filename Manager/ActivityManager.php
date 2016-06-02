@@ -32,4 +32,36 @@ class ActivityManager
         $resultArr = json_decode((string) $result->getBody());
         return $resultArr->activities;
     }
+
+    public function createActivity($appId, $activity)
+    {
+        $accessToken = $this->authManager->getAccessToken();
+
+        $schema = [
+            'activity' => [
+                'scheme' => 'url',
+                'name' => $activity['name'],
+                'url' => $activity['url'],
+                'trigger_attributes' => [
+                    'type' => 'BeaconTrigger',
+                    'event_type' => 'enter',
+                    'beacon_ids' => [1]
+                ]
+            ]
+        ];
+
+        try {
+            $result = $this->client->post('applications/' . $appId . '/activities.json', [
+                'json' => $schema,
+                'headers' => [
+                    'Authorization' => 'Bearer ' . $accessToken->access_token
+                ]
+            ]);
+        } catch (\GuzzleHttp\Exception\ClientException $e) {
+            return (json_decode((string) $e->getResponse()->getBody()));
+        }
+
+        $resultArr = json_decode((string) $result->getBody());
+        return $resultArr->activity;
+    }
 }

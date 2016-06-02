@@ -1,8 +1,8 @@
 <?php
 
-namespace Cirici\JWTClientBundle\Tests\Manager;
+namespace Cirici\BeaconControlClientBundle\Tests\Manager;
 
-use Cirici\JWTClientBundle\Tests\BaseTestCase;
+use Cirici\BeaconControlClientBundle\Tests\BaseTestCase;
 
 class ActivityManagerTest extends BaseTestCase
 {
