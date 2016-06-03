@@ -45,7 +45,7 @@ class ActivityManager
                 'trigger_attributes' => [
                     'type' => 'BeaconTrigger',
                     'event_type' => 'enter',
-                    'beacon_ids' => [1]
+                    'beacon_ids' => isset($activity['beacons']) ? $activity['beacons'] : null
                 ]
             ]
         ];
