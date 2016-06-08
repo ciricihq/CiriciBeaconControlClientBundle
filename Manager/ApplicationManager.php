@@ -59,11 +59,16 @@ class ApplicationManager
     {
         $accessToken = $this->authManager->getAccessToken();
 
-        $result = $this->client->delete('applications/' . $id . '.json', [
-            'headers' => [
-                'Authorization' => 'Bearer ' . $accessToken->access_token
-            ]
-        ]);
+        try {
+            $result = $this->client->delete('applications/' . $id . '.json', [
+                'headers' => [
+                    'Authorization' => 'Bearer ' . $accessToken->access_token
+                ]
+            ]);
+        } catch (\GuzzleHttp\Exception\ClientException $e) {
+            return $e->getMessage();
+        }
+
         return json_decode((string) $result->getBody());
     }
 
