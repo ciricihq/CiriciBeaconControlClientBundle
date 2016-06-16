@@ -1,7 +1,5 @@
 <?php
 
-namespace Cirici\BeaconControlClientBundle\Tests\app;
-
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;

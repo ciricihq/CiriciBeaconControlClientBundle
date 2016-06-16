@@ -2,9 +2,9 @@
 
 namespace Cirici\BeaconControlClientBundle\Tests\Manager;
 
-use Cirici\BeaconControlClientBundle\Tests\BaseTestCase;
+use Liip\FunctionalTestBundle\Test\WebTestCase;
 
-class BeaconManagerTest extends BaseTestCase
+class BeaconManagerTest extends WebTestCase
 {
     public function testGetBeacons()
     {

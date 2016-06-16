@@ -2,9 +2,9 @@
 
 namespace Cirici\BeaconControlClientBundle\Tests\Manager;
 
-use Cirici\BeaconControlClientBundle\Tests\BaseTestCase;
+use Liip\FunctionalTestBundle\Test\WebTestCase;
 
-class ActivityManagerTest extends BaseTestCase
+class ActivityManagerTest extends WebTestCase
 {
     public function testGetActivitiesByApp()
     {
