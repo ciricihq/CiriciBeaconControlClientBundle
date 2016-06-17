@@ -6,12 +6,14 @@ class Beacon implements \JsonSerializable
 {
     private $id;
     private $name;
+    private $location;
 
     public function __construct($json = null)
     {
         if ($json) {
             $this->id = isset($json->id) ? $json->id : null;
             $this->name = isset($json->name) ? $json->name : null;
+            $this->location = isset($json->location) ? $json->location: null;
         }
     }
 
@@ -35,10 +37,21 @@ class Beacon implements \JsonSerializable
         $this->name = $name;
     }
 
-   public function jsonSerialize() {
+    public function getLocation()
+    {
+        return $this->location;
+    }
+
+    public function setLocation($location)
+    {
+        $this->location = $location;
+    }
+
+    public function jsonSerialize() {
         return [
             'id' => $this->getId(),
             'name' => $this->getName(),
+            'location' => $this->getLocation()
         ];
     }
 }

@@ -1,4 +1,8 @@
 framework:
+    validation: ~
     secret: test
+    test: ~
     session:
         storage_id: session.storage.mock_file
+
+liip_functional_test: ~
