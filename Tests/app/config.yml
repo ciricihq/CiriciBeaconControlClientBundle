@@ -6,3 +6,14 @@ framework:
         storage_id: session.storage.mock_file
 
 liip_functional_test: ~
+
+parameters:
+    beacon_control_s2s_api_id: 1234
+    beacon_control_s2s_api_secret: 1234
+    beacon_control_s2s_admin_email: admin@example.com
+    beacon_control_s2s_admin_password: 1234
+
+guzzle:
+    clients:
+        beacon_contol_s2s:
+            base_url: "http://localhost"
