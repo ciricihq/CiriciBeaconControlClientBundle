@@ -64,4 +64,21 @@ class ActivityManager
         $resultArr = json_decode((string) $result->getBody());
         return $resultArr->activity;
     }
+
+    public function deleteActivity($appId, $activityId)
+    {
+        $accessToken = $this->authManager->getAccessToken();
+
+        try {
+            $result = $this->client->delete('applications/' . $appId . '/activities/' . $activityId . '.json', [
+                'headers' => [
+                    'Authorization' => 'Bearer ' . $accessToken->access_token
+                ]
+            ]);
+        } catch (\GuzzleHttp\Exception\ClientException $e) {
+            return (json_decode((string) $e->getResponse()->getBody()));
+        }
+
+        return $result;
+    }
 }
