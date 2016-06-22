@@ -10,7 +10,7 @@ class ActivityManagerTest extends WebTestCase
     {
         $client = static::makeClient();
         $activityManager = $client->getContainer()->get('cirici_beacon_control_client.activity_manager');
-        $activities = $activityManager->getActivitiesByApplication(1);
+        // $activities = $activityManager->getActivitiesByApplication(1);
         // dump($activities);
         // $this->assertNotNull($activities);
     }
