@@ -37,18 +37,7 @@ class ActivityManager
     {
         $accessToken = $this->authManager->getAccessToken();
 
-        $schema = [
-            'activity' => [
-                'scheme' => 'url',
-                'name' => $activity['name'],
-                'url' => $activity['url'],
-                'trigger_attributes' => [
-                    'type' => 'BeaconTrigger',
-                    'event_type' => 'enter',
-                    'beacon_ids' => isset($activity['beacons']) ? $activity['beacons'] : null
-                ]
-            ]
-        ];
+        $schema = $this->generateSchema($activity);
 
         try {
             $result = $this->client->post('applications/' . $appId . '/activities.json', [
@@ -63,6 +52,27 @@ class ActivityManager
 
         $resultArr = json_decode((string) $result->getBody());
         return $resultArr->activity;
+    }
+
+    public function updateActivity($appId, $activity)
+    {
+        $accessToken = $this->authManager->getAccessToken();
+
+        $schema = $this->generateSchema($activity);
+
+        try {
+            $result = $this->client->put('applications/' . $appId . '/activities/' . $activity['id'] . '.json', [
+                'json' => $schema,
+                'headers' => [
+                    'Authorization' => 'Bearer ' . $accessToken->access_token
+                ]
+            ]);
+        } catch (\GuzzleHttp\Exception\ClientException $e) {
+            return (json_decode((string) $e->getResponse()->getBody()));
+        }
+
+        $resultArr = json_decode((string) $result->getBody());
+        return $resultArr;
     }
 
     public function deleteActivity($appId, $activityId)
@@ -80,5 +90,24 @@ class ActivityManager
         }
 
         return $result;
+    }
+
+    private function generateSchema($activity)
+    {
+        return [
+            'activity' => [
+                'scheme' => 'url',
+                'name' => $activity['name'],
+                'url' => $activity['url'],
+                'trigger_attributes' => [
+                    'type' => 'BeaconTrigger',
+                    'event_type' => 'enter',
+                    'beacon_ids' => isset($activity['beacons']) ? $activity['beacons'] : [],
+                    'sources' => '',
+                    'add_beacon' => '',
+                    'add_zone' => ''
+                ]
+            ]
+        ];
     }
 }

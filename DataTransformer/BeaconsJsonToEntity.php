@@ -15,6 +15,10 @@ class BeaconsJsonToEntity
      */
     public function beaconsCollectionToEntities($jsoncol)
     {
+        if (!isset($jsoncol->ranges)) {
+            return [];
+        }
+
         $result = [];
         foreach ($jsoncol->ranges as $beacon) {
             $result[] = new Beacon($beacon);
