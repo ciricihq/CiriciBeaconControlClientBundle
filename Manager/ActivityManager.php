@@ -8,6 +8,14 @@ class ActivityManager
 
     private $authManager;
 
+    /**
+     * __construct
+     *
+     * @param mixed $client
+     * @param mixed $authManager
+     * @access public
+     * @return void
+     */
     public function __construct($client, $authManager)
     {
         $this->client = $client;
@@ -33,6 +41,14 @@ class ActivityManager
         return $resultArr->activities;
     }
 
+    /**
+     * createActivity
+     *
+     * @param mixed $appId
+     * @param mixed $activity
+     * @access public
+     * @return void
+     */
     public function createActivity($appId, $activity)
     {
         $accessToken = $this->authManager->getAccessToken();
