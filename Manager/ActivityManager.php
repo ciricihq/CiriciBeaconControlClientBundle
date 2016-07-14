@@ -119,9 +119,9 @@ class ActivityManager
                     'type' => 'BeaconTrigger',
                     'event_type' => 'enter',
                     'beacon_ids' => isset($activity['beacons']) ? $activity['beacons'] : [],
-                    'sources' => '',
-                    'add_beacon' => '',
-                    'add_zone' => ''
+                    'sources' => [],
+                    'add_beacon' => [],
+                    'add_zone' => []
                 ]
             ]
         ];

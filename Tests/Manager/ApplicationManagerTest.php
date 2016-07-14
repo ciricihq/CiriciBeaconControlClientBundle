@@ -2,14 +2,13 @@
 
 namespace Cirici\BeaconControlClientBundle\Tests\Manager;
 
-use Liip\FunctionalTestBundle\Test\WebTestCase;
+use Cirici\BeaconControlClientBundle\Tests\BaseTestSuite;
 
-class ApplicationManagerTest extends WebTestCase
+class ApplicationManagerTest extends BaseTestSuite
 {
     public function testGetApplications()
     {
-        $client = static::makeClient();
-        $applicationManager = $client->getContainer()->get('cirici_beacon_control_client.application_manager');
+        $applicationManager = $this->client->getContainer()->get('cirici_beacon_control_client.application_manager');
         $applications = $applicationManager->getApplications();
         $this->assertNotNull($applications);
     }

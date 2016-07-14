@@ -18,3 +18,5 @@ services:
     cirici_beacon_control_client.transformer.beacons_json_to_entity:
         class: Cirici\BeaconControlClientBundle\DataTransformer\BeaconsJsonToEntity
 
+    cirici_beacon_control_client.transformer.activities_json_to_entity:
+        class: Cirici\BeaconControlClientBundle\DataTransformer\ActivitiesJsonToEntity
