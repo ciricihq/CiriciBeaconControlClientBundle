@@ -3,6 +3,7 @@
 namespace Cirici\BeaconControlClientBundle\Tests\DataTransformer;
 
 use Liip\FunctionalTestBundle\Test\WebTestCase;
+use Cirici\BeaconControlClientBundle\Entity\Activity;
 
 class ActivitiesJsonToEntityTest extends WebTestCase
 {
@@ -14,5 +15,6 @@ class ActivitiesJsonToEntityTest extends WebTestCase
         $transformedCol = $transformer->activitiesCollectionToEntities($collection);
 
         $this->assertGreaterThan(0, count($transformedCol));
+        $this->assertContainsOnlyInstancesOf(Activity::class, $transformedCol);
     }
 }
