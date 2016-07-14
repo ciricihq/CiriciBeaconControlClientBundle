@@ -44,6 +44,8 @@ class BaseTestSuite extends WebTestCase
         $this->client->getContainer()->mock('cirici_beacon_control_client.application_manager', 'Cirici\BeaconControlClientBundle\Manager\ApplicationManager')
             ->shouldReceive('getApplications')
             ->andReturn([])
+            ->shouldReceive('postApplication')
+            ->andReturn([])
             ->shouldReceive('getApplicationById')
             ->andReturn([])
         ;

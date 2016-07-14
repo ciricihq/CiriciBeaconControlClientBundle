@@ -8,6 +8,7 @@ class ApplicationManagerTest extends BaseTestSuite
 {
     public function testGetApplications()
     {
+        $this->mockApiServices();
         $applicationManager = $this->client->getContainer()->get('cirici_beacon_control_client.application_manager');
         $applications = $applicationManager->getApplications();
         $this->assertNotNull($applications);
@@ -15,8 +16,8 @@ class ApplicationManagerTest extends BaseTestSuite
 
     public function testPostApplications()
     {
-        $client = static::makeClient();
-        $applicationManager = $client->getContainer()->get('cirici_beacon_control_client.application_manager');
+        $this->mockApiServices();
+        $applicationManager = $this->client->getContainer()->get('cirici_beacon_control_client.application_manager');
         $application = $applicationManager->postApplication('delete me - ' . rand(0, 9999));
         $this->assertNotNull($application);
     }

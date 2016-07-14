@@ -14,6 +14,7 @@ class AppKernel extends Kernel
             $bundles[] = new \Symfony\Bundle\FrameworkBundle\FrameworkBundle();
             $bundles[] = new \Liip\FunctionalTestBundle\LiipFunctionalTestBundle();
             $bundles[] = new EightPoints\Bundle\GuzzleBundle\GuzzleBundle();
+            $bundles[] = new Symfony\Bundle\DebugBundle\DebugBundle();
             $bundles[] = new Cirici\BeaconControlClientBundle\CiriciBeaconControlClientBundle();
         }
 
@@ -25,7 +26,7 @@ class AppKernel extends Kernel
      */
     protected function getContainerBaseClass()
     {
-        if ('test' == $this->environment) {
+        if ('test' === $this->environment) {
             return '\PSS\SymfonyMockerContainer\DependencyInjection\MockerContainer';
         }
 
