@@ -120,6 +120,16 @@ class Activity implements \JsonSerializable
         return $this->beacons;
     }
 
+    public function getBeaconsIds()
+    {
+        $result = [];
+        foreach ($this->beacons as $beacon) {
+            $result[] = $beacon->getId();
+        }
+
+        return $result;
+    }
+
     /**
      * setTriggerConfiguration
      *

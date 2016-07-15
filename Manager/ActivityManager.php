@@ -2,6 +2,8 @@
 
 namespace Cirici\BeaconControlClientBundle\Manager;
 
+use Cirici\BeaconControlClientBundle\Entity\Activity;
+
 class ActivityManager
 {
     private $client;
@@ -108,17 +110,17 @@ class ActivityManager
         return $result;
     }
 
-    private function generateSchema($activity)
+    private function generateSchema(Activity $activity)
     {
         return [
             'activity' => [
                 'scheme' => 'url',
-                'name' => $activity['name'],
-                'url' => $activity['url'],
+                'name' => $activity->getName(),
+                'url' => $activity->getUrl(),
                 'trigger_attributes' => [
                     'type' => 'BeaconTrigger',
                     'event_type' => 'enter',
-                    'beacon_ids' => isset($activity['beacons']) ? $activity['beacons'] : [],
+                    'beacon_ids' => $activity->getBeaconsIds(),
                     'sources' => [],
                     'add_beacon' => [],
                     'add_zone' => []
