@@ -115,8 +115,9 @@ class ActivityManager
         $activities = $this->getActivitiesByApplication($appId);
 
         foreach ($activities as $activity) {
-            if ($activity->getId() === $activityId) {
-                return $activity;
+
+            if ($activity->id == $activityId) {
+                return new Activity($activity);
             }
         }
 

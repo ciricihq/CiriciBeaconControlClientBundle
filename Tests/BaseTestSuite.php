@@ -4,6 +4,8 @@ namespace Cirici\BeaconControlClientBundle\Tests;
 
 use Liip\FunctionalTestBundle\Test\WebTestCase;
 
+use Cirici\BeaconControlClientBundle\Entity\Activity;
+
 class BaseTestSuite extends WebTestCase
 {
     /**
@@ -33,13 +35,36 @@ class BaseTestSuite extends WebTestCase
         ;
 
         // Mockgin activity_manager service
+        $mockedNewActivity = json_decode('
+            {
+                "activity": {
+                    "id": 16,
+                    "name": "Activity3",
+                    "scheme": "url",
+                    "payload": {
+                        "url": "example.com"
+                    },
+                    "custom_attributes": [],
+                    "trigger": {
+                        "id": 16,
+                        "type": "ZoneTrigger",
+                        "event_type": "enter",
+                        "dwell_time": 5,
+                        "beacon_ids": [],
+                        "zone_ids": [1],
+                        "test": false
+                    }
+                }
+            }
+            ');
+
         $this->client->getContainer()->mock('cirici_beacon_control_client.activity_manager', 'Cirici\BeaconControlClientBundle\Manager\ActivityManager')
             ->shouldReceive('getActivitiesByApplication')
             ->andReturn([])
             ->shouldReceive('createActivity')
             ->andReturn([])
             ->shouldReceive('retrieveActivity')
-            ->andReturn([])
+            ->andReturn(new Activity($mockedNewActivity->activity))
         ;
 
         // Mocking s2s beacon-control api request with timeout error, application

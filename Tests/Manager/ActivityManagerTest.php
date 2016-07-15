@@ -20,5 +20,6 @@ class ActivityManagerTest extends BaseTestSuite
         $activityManager = $this->client->getContainer()->get('cirici_beacon_control_client.activity_manager');
         $activity = $activityManager->retrieveActivity(1, 1);
         $this->assertNotNull($activity);
+        $this->assertInstanceOf('Cirici\BeaconControlClientBundle\Entity\Activity', $activity);
     }
 }
