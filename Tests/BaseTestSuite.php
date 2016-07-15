@@ -38,6 +38,8 @@ class BaseTestSuite extends WebTestCase
             ->andReturn([])
             ->shouldReceive('createActivity')
             ->andReturn([])
+            ->shouldReceive('retrieveActivity')
+            ->andReturn([])
         ;
 
         // Mocking s2s beacon-control api request with timeout error, application

@@ -2,16 +2,23 @@
 
 namespace Cirici\BeaconControlClientBundle\Tests\Manager;
 
-use Liip\FunctionalTestBundle\Test\WebTestCase;
+use Cirici\BeaconControlClientBundle\Tests\BaseTestSuite;
 
-class ActivityManagerTest extends WebTestCase
+class ActivityManagerTest extends BaseTestSuite
 {
     public function testGetActivitiesByApp()
     {
-        $client = static::makeClient();
-        $activityManager = $client->getContainer()->get('cirici_beacon_control_client.activity_manager');
-        // $activities = $activityManager->getActivitiesByApplication(1);
-        // dump($activities);
-        // $this->assertNotNull($activities);
+        $this->mockApiServices();
+        $activityManager = $this->client->getContainer()->get('cirici_beacon_control_client.activity_manager');
+        $activities = $activityManager->getActivitiesByApplication(1);
+        $this->assertNotNull($activities);
+    }
+
+    public function testRetrieveActivity()
+    {
+        $this->mockApiServices();
+        $activityManager = $this->client->getContainer()->get('cirici_beacon_control_client.activity_manager');
+        $activity = $activityManager->retrieveActivity(1, 1);
+        $this->assertNotNull($activity);
     }
 }

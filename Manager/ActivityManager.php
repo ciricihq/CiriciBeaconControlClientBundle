@@ -110,6 +110,19 @@ class ActivityManager
         return $result;
     }
 
+    public function retrieveActivity($appId, $activityId)
+    {
+        $activities = $this->getActivitiesByApplication($appId);
+
+        foreach ($activities as $activity) {
+            if ($activity->getId() === $activityId) {
+                return $activity;
+            }
+        }
+
+        return;
+    }
+
     private function generateSchema(Activity $activity)
     {
         return [
