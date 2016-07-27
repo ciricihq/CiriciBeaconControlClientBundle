@@ -7,6 +7,8 @@ class Beacon implements \JsonSerializable
     private $id;
     private $name;
     private $location;
+    private $major;
+    private $minor;
 
     public function __construct($json = null)
     {
@@ -14,6 +16,8 @@ class Beacon implements \JsonSerializable
             $this->id = isset($json->id) ? $json->id : null;
             $this->name = isset($json->name) ? $json->name : null;
             $this->location = isset($json->location) ? $json->location: null;
+            $this->major = isset($json->major) ? $json->major : null;
+            $this->minor = isset($json->minor) ? $json->minor : null;
         }
     }
 
@@ -47,11 +51,33 @@ class Beacon implements \JsonSerializable
         $this->location = $location;
     }
 
+    public function getMajor()
+    {
+        return $this->major;
+    }
+
+    public function setMajor($major)
+    {
+        $this->major = $major;
+    }
+
+    public function getMinor()
+    {
+        return $this->minor;
+    }
+
+    public function setMinor($minor)
+    {
+        $this->minor = $minor;
+    }
+
     public function jsonSerialize() {
         return [
             'id' => $this->getId(),
             'name' => $this->getName(),
-            'location' => $this->getLocation()
+            'location' => $this->getLocation(),
+            'major' => $this->getMajor(),
+            'minor' => $this->getMinor()
         ];
     }
 }
