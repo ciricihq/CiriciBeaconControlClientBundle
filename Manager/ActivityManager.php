@@ -64,7 +64,9 @@ class ActivityManager
                     'Authorization' => 'Bearer ' . $accessToken->access_token
                 ]
             ]);
+           
         } catch (\GuzzleHttp\Exception\ClientException $e) {
+           
             return (json_decode((string) $e->getResponse()->getBody()));
         }
 
@@ -149,7 +151,6 @@ class ActivityManager
                             'activity' => [
                                 'scheme' => $activity->getScheme(),
                                 'name' => 'PUSH',
-                                'url' => $activity->getUrl(),
                                 'trigger_attributes' => [
                                     'type' => 'BeaconTrigger',
                                     'event_type' => 'enter',
