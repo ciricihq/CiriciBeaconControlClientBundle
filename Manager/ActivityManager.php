@@ -64,7 +64,9 @@ class ActivityManager
                     'Authorization' => 'Bearer ' . $accessToken->access_token
                 ]
             ]);
+           
         } catch (\GuzzleHttp\Exception\ClientException $e) {
+           
             return (json_decode((string) $e->getResponse()->getBody()));
         }
 
@@ -126,20 +128,45 @@ class ActivityManager
 
     private function generateSchema(Activity $activity)
     {
-        return [
-            'activity' => [
-                'scheme' => 'url',
-                'name' => $activity->getName(),
-                'url' => $activity->getUrl(),
-                'trigger_attributes' => [
-                    'type' => 'BeaconTrigger',
-                    'event_type' => 'enter',
-                    'beacon_ids' => $activity->getBeaconsIds(),
-                    'sources' => [],
-                    'add_beacon' => [],
-                    'add_zone' => []
+        switch($activity->getScheme()){
+            case 'url':
+                return [
+                'activity' => [
+                    'scheme' => $activity->getScheme(),
+                    'name' => $activity->getName(),
+                    'url' => $activity->getUrl(),
+                    'trigger_attributes' => [
+                        'type' => 'BeaconTrigger',
+                        'event_type' => 'enter',
+                        'beacon_ids' => $activity->getBeaconsIds(),
+                        'sources' => [],
+                        'add_beacon' => [],
+                        'add_zone' => []
+                    ]
                 ]
-            ]
-        ];
+                ];
+            case 'custom':
+
+                return [
+                            'activity' => [
+                                'scheme' => $activity->getScheme(),
+                                'name' => 'PUSH',
+                                'trigger_attributes' => [
+                                    'type' => 'BeaconTrigger',
+                                    'event_type' => 'enter',
+                                    'beacon_ids' => $activity->getBeaconsIds(),
+                                    'sources' => [],
+                                    'add_beacon' => [],
+                                    'add_zone' => []
+                                ],
+                                'custom_attributes_attributes' => [[
+                                    'name'=>'text',
+                                    'value' => 'hola?'
+                                    ]
+                                ]
+                            ]
+                        ];
+        }
+        
     }
 }

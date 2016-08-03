@@ -12,6 +12,8 @@ class Activity implements \JsonSerializable
     private $triggerConfiguration;
     private $triggerAttributes;
     public $beacons;
+    private $scheme;
+    private $pushMessage;
 
     /**
      * __construct
@@ -38,6 +40,8 @@ class Activity implements \JsonSerializable
             $this->id = isset($json->id) ? $json->id : null ;
             $this->url = isset($json->url) ? $json->url : null ;
             $this->url = isset($json->payload->url) ? $json->payload->url : null ;
+            $this->scheme = isset($json->scheme) ? $json->scheme : null ;
+            $this->pushMessage = isset($json->pushMessage) ? $json->pushMessage : null ;
         }
     }
 
@@ -176,6 +180,54 @@ class Activity implements \JsonSerializable
         return $this->triggerAttributes;
     }
 
+
+
+    /**
+     * getScheme
+     *
+     * @access public
+     * @return scheme
+     */
+    public function getScheme()
+    {
+        return $this->scheme;
+    }
+
+    /**
+     * setScheme
+     *
+     * @param mixed $scheme
+     * @access public
+     * @return void
+     */
+    public function  setScheme($scheme)
+    {
+        $this->scheme = $scheme;
+    }
+
+    /**
+     * getPushMessage
+     *
+     * @access public
+     * @return pushMessage
+     */
+    public function getPushMessage()
+    {
+        return $this->pushMessage;
+    }
+
+    /**
+     * setPushMessage
+     *
+     * @param mixed $pushMessage
+     * @access public
+     * @return void
+     */
+    public function  setPushMessage($pushMessage)
+    {
+        $this->pushMessage = $pushMessage;
+    }
+
     /**
      * jsonSerialize
      *
@@ -186,6 +238,7 @@ class Activity implements \JsonSerializable
         return [
             'name' => $this->getName(),
             'url' => $this->getUrl(),
+            'scheme' => $this->getScheme(),
             'trigger_attributes' => $this->getTriggerAttributes(),
         ];
     }
