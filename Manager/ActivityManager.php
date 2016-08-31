@@ -81,7 +81,7 @@ class ActivityManager
         $schema = $this->generateSchema($activity);
 
         try {
-            $result = $this->client->put('applications/' . $appId . '/activities/' . $activity['id'] . '.json', [
+            $result = $this->client->put('applications/' . $appId . '/activities/' . $activity->getId() . '.json', [
                 'json' => $schema,
                 'headers' => [
                     'Authorization' => 'Bearer ' . $accessToken->access_token

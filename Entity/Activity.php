@@ -3,7 +3,11 @@
 namespace Cirici\BeaconControlClientBundle\Entity;
 
 use Cirici\BeaconControlClientBundle\Entity\Beacon;
+use Cirici\BeaconControlClientBundle\Validator\Constraints\ActionTypeConstraint;
 
+/**
+ * @ActionTypeConstraint
+ */
 class Activity implements \JsonSerializable
 {
     private $id;
@@ -12,6 +16,7 @@ class Activity implements \JsonSerializable
     private $triggerConfiguration;
     private $triggerAttributes;
     public $beacons;
+
     private $scheme;
     private $pushMessage;
 
