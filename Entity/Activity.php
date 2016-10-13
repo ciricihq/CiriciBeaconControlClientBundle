@@ -185,8 +185,6 @@ class Activity implements \JsonSerializable
         return $this->triggerAttributes;
     }
 
-
-
     /**
      * getScheme
      *
