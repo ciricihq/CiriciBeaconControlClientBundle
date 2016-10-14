@@ -160,7 +160,8 @@ class ActivityManager
                             ],
                             'custom_attributes_attributes' => [[
                                 'name'=>'text',
-                                'value' => 'hola?'
+                                'value' => 'hola?',
+                                'type' => 'PUSH'
                             ]]
                     ]
                 ];
