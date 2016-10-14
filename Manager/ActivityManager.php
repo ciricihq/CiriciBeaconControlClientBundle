@@ -160,7 +160,7 @@ class ActivityManager
                             ],
                             'custom_attributes_attributes' => [[
                                 'name'=>'text',
-                                'value' => 'hola?',
+                                'value' => $activity->getPushMessage(),
                                 'type' => 'PUSH'
                             ]]
                     ]
