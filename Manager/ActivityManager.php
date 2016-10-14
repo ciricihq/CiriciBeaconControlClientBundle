@@ -159,9 +159,8 @@ class ActivityManager
                                 'add_zone' => []
                             ],
                             'custom_attributes_attributes' => [[
-                                'name'=>'text',
-                                'value' => $activity->getPushMessage(),
-                                'type' => 'PUSH'
+                                'name'=>'PUSH',
+                                'value' => $activity->getPushMessage()
                             ]]
                     ]
                 ];
