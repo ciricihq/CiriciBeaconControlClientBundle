@@ -158,13 +158,10 @@ class ActivityManager
                                 'add_beacon' => [],
                                 'add_zone' => []
                             ],
-                            'custom_attributes_attributes' => json_encode('[{
-                                "name" : "text",
-                                "value" : "'.$activity->getPushMessage().'"
-                            },{
-                                "name" : "type",
-                                "value" :  "PUSH"
-                            }]')
+                            'custom_attributes_attributes' => [[
+                                'name'=>'text',
+                                'value' => $activity->getPushMessage()
+                            ]]
                     ]
                 ];
         }
