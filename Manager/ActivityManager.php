@@ -146,6 +146,7 @@ class ActivityManager
                         'add_zone' => []
 
                     ]
+                ]
                 ];
             case 'custom':
                 return [
