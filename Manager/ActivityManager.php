@@ -128,42 +128,45 @@ class ActivityManager
 
     private function generateSchema(Activity $activity)
     {
-        switch ($activity->getScheme()) {
+
+
+        switch($activity->getScheme()){
             case 'url':
                 return [
-                    'activity' => [
-                        'scheme' => $activity->getScheme(),
-                        'name' => $activity->getName(),
-                        'url' => $activity->getUrl(),
-                        'trigger_attributes' => [
-                            'type' => 'BeaconTrigger',
-                            'event_type' => 'enter',
-                            'beacon_ids' => $activity->getBeaconsIds(),
-                            'sources' => [],
-                            'add_beacon' => [],
-                            'add_zone' => []
-                        ]
+                'activity' => [
+                    'scheme' => $activity->getScheme(),
+                    'name' => $activity->getName(),
+                    'url' => $activity->getUrl(),
+                    'trigger_attributes' => [
+                        'type' => 'BeaconTrigger',
+                        'event_type' => $activity->getTriggerConfiguration()->getEventType(),
+                        'beacon_ids' => $activity->getBeaconsIds(),
+                        'sources' => [],
+                        'add_beacon' => [],
+                        'add_zone' => []
+
                     ]
                 ];
             case 'custom':
                 return [
-                    'activity' => [
-                        'scheme' => $activity->getScheme(),
-                        'name' => $activity->getName(),
+                        'activity' => [
+                            'scheme' => $activity->getScheme(),
+                            'name' => $activity->getName(),
                             'trigger_attributes' => [
                                 'type' => 'BeaconTrigger',
-                                'event_type' => 'enter',
-                                'beacon_ids' => $activity->getBeaconsIds(),
-                                'sources' => [],
-                                'add_beacon' => [],
-                                'add_zone' => []
-                            ],
-                            'custom_attributes_attributes' => [[
-                                'name'=>'text',
-                                'value' => $activity->getPushMessage()
-                            ]]
-                    ]
-                ];
+                                'event_type' => $activity->getTriggerConfiguration()->getEventType(),
+                                    'beacon_ids' => $activity->getBeaconsIds(),
+                                    'sources' => [],
+                                    'add_beacon' => [],
+                                    'add_zone' => []
+                                ],
+                                'custom_attributes_attributes' => [[
+                                    'name'=>'text',
+                                    'value' => $activity->getPushMessage()
+                                    ]
+                                ]
+                            ]
+                        ];
         }
 
     }

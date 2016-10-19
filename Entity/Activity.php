@@ -3,6 +3,7 @@
 namespace Cirici\BeaconControlClientBundle\Entity;
 
 use Cirici\BeaconControlClientBundle\Entity\Beacon;
+use Cirici\BeaconControlClientBundle\Entity\TriggerConfiguration;
 use Cirici\BeaconControlClientBundle\Validator\Constraints\ActionTypeConstraint;
 
 /**
@@ -16,7 +17,6 @@ class Activity implements \JsonSerializable
     private $triggerConfiguration;
     private $triggerAttributes;
     public $beacons;
-
     private $scheme;
     private $pushMessage;
 
@@ -30,7 +30,6 @@ class Activity implements \JsonSerializable
     public function __construct($json = null)
     {
         $this->beacons = [];
-
         if ($json) {
 
             if (isset($json->trigger->beacon_ids)) {
@@ -46,7 +45,21 @@ class Activity implements \JsonSerializable
             $this->url = isset($json->url) ? $json->url : null ;
             $this->url = isset($json->payload->url) ? $json->payload->url : null ;
             $this->scheme = isset($json->scheme) ? $json->scheme : null ;
-            $this->pushMessage = isset($json->pushMessage) ? $json->pushMessage : null ;
+
+            //Search into custom_attributes if exists
+            if (isset($json->custom_attributes)){
+                foreach($json->custom_attributes as $attribute){
+                    if ($attribute->name == "text"){
+                        $this->pushMessage = isset($attribute->value) ? $attribute->value : null ;
+                    }
+                }
+            }
+
+            if (isset($json->trigger)){
+
+                $this->triggerConfiguration = new TriggerConfiguration($json->trigger);
+            }
+            
         }
     }
 
