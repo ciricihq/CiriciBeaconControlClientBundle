@@ -149,36 +149,48 @@ class ActivityManager
     }
 
     private function generateSchema(Activity $activity) {
-        switch($activity->getScheme()){
-            case 'url':
-                return [
-                    'activity' => [
-                        'scheme' => $activity->getScheme(),
-                        'name' => $activity->getName(),
-                        'url' => $activity->getUrl(),
-                        'trigger_attributes' => $this->generateTriggerAttributes($activity),
-                        'custom_attributes_attributes' => [[
-                            'name' => 'once',
-                            'value' => $activity->getOnce()
-                        ]]
-                    ]
+        if ($activity->getScheme() === 'url') {
+            $customAttrs = [];
+            if ($activity->getOnce()) {
+                $customAttrs[]  = [
+                    'name' => 'once',
+                    'value' => $activity->getOnce()
                 ];
-            case 'custom':
-                return [
-                    'activity' => [
-                        'scheme' => $activity->getScheme(),
-                        'name' => $activity->getName(),
-                        'trigger_attributes' => $this->generateTriggerAttributes($activity),
-                        'custom_attributes_attributes' => [[
-                            'name'=>'text',
-                            'value' => $activity->getPushMessage()
-                        ], [
-                            'name' => 'once',
-                            'value' => $activity->getOnce()
-                        ]]
-                    ]
-                ];
+            }
+
+            return [
+                'activity' => [
+                    'scheme' => $activity->getScheme(),
+                    'name' => $activity->getName(),
+                    'url' => $activity->getUrl(),
+                    'trigger_attributes' => $this->generateTriggerAttributes($activity),
+                    'custom_attributes_attributes' => $customAttrs
+                ]
+            ];
         }
 
+        if ($activity->getScheme() === 'custom') {
+            $customAttrs  = [[
+                'name'=>'text',
+                'value' => $activity->getPushMessage()
+            ]];
+
+            if ($activity->getOnce()) {
+                $customAttrs[]  = [
+                    'name' => 'once',
+                    'value' => $activity->getOnce()
+                ];
+            }
+            return [
+                'activity' => [
+                    'scheme' => $activity->getScheme(),
+                    'name' => $activity->getName(),
+                    'trigger_attributes' => $this->generateTriggerAttributes($activity),
+                    'custom_attributes_attributes' => $customAttrs
+                ]
+            ];
+        }
+
+        return;
     }
 }
