@@ -1,19 +1,19 @@
 services:
     cirici_beacon_control_client.authentication_manager:
         class: Cirici\BeaconControlClientBundle\Manager\AuthenticationManager
-        arguments: ["@guzzle.client.beacon_contol_s2s", "%beacon_control_s2s_api_id%", "%beacon_control_s2s_api_secret%", "%beacon_control_s2s_admin_email%", "%beacon_control_s2s_admin_password%"]
+        arguments: ["@eight_points_guzzle.client.beacon_contol_s2s", "%beacon_control_s2s_api_id%", "%beacon_control_s2s_api_secret%", "%beacon_control_s2s_admin_email%", "%beacon_control_s2s_admin_password%"]
 
     cirici_beacon_control_client.application_manager:
         class: Cirici\BeaconControlClientBundle\Manager\ApplicationManager
-        arguments: ["@guzzle.client.beacon_contol_s2s", "@cirici_beacon_control_client.authentication_manager"]
+        arguments: ["@eight_points_guzzle.client.beacon_contol_s2s", "@cirici_beacon_control_client.authentication_manager"]
 
     cirici_beacon_control_client.beacon_manager:
         class: Cirici\BeaconControlClientBundle\Manager\BeaconManager
-        arguments: ["@guzzle.client.beacon_contol_s2s", "@cirici_beacon_control_client.authentication_manager"]
+        arguments: ["@eight_points_guzzle.client.beacon_contol_s2s", "@cirici_beacon_control_client.authentication_manager"]
 
     cirici_beacon_control_client.activity_manager:
         class: Cirici\BeaconControlClientBundle\Manager\ActivityManager
-        arguments: ["@guzzle.client.beacon_contol_s2s", "@cirici_beacon_control_client.authentication_manager"]
+        arguments: ["@eight_points_guzzle.client.beacon_contol_s2s", "@cirici_beacon_control_client.authentication_manager"]
 
     cirici_beacon_control_client.transformer.beacons_json_to_entity:
         class: Cirici\BeaconControlClientBundle\DataTransformer\BeaconsJsonToEntity
